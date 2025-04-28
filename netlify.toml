@@ -1,5 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# 此设置告诉Netlify这是一个SPA
+[build.environment]
+  NETLIFY_USE_YARN = "false"
+  NODE_VERSION = "18"
+
+# 主要重定向：所有路径到index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true 
+  # force = true # 通常不需要force，除非有特殊冲突
+
+# 确保404页面也重定向到index.html
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 200 

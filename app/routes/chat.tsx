@@ -120,7 +120,7 @@ export default function Chat() {
     // 设置连接超时
     const connectionTimeout = () => {
       if (!isConnected) {
-        if (isHost) {
+    if (isHost) {
           setConnectionError("等待其他用户加入超时，请确认房间号是否已分享");
         } else {
           setConnectionError("连接到房间超时，请检查房间号是否正确。\n可能的原因：\n1. 房间号输入错误\n2. 房主已断开连接\n3. 网络连接问题");
@@ -216,7 +216,7 @@ export default function Chat() {
             
             // 设置30秒超时
             timeoutId = setTimeout(connectionTimeout, 30000);
-          } else {
+    } else {
             // 客户端连接到房主
             console.log('尝试加入房间:', roomId);
             try {
@@ -264,12 +264,12 @@ export default function Chat() {
           newPeer.on('connection', conn => {
             console.log('有用户加入房间');
             setConnectionDetails("连接成功！用户已加入。");
-            setConnection(conn);
+        setConnection(conn);
             setIsConnected(true);
             setIsConnecting(false);
             clearTimeout(timeoutId);
             
-            conn.on('data', data => addPeerMessage(data));
+        conn.on('data', data => addPeerMessage(data));
             
             conn.on('close', () => {
               console.log('对方断开连接');
@@ -496,7 +496,7 @@ export default function Chat() {
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
           <div className="flex items-center">
-            房间ID：{roomId}
+          房间ID：{roomId}
             <button 
               onClick={copyRoomId} 
               className="ml-2 focus:outline-none"
@@ -545,7 +545,7 @@ export default function Chat() {
               <FontAwesomeIcon icon={faHome} size="lg" />
             </Link>
             <div className="flex items-center">
-              房间ID：{roomId}
+            房间ID：{roomId}
               <button 
                 onClick={copyRoomId} 
                 className="ml-2 focus:outline-none"
